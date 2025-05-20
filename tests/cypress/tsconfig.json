@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "lib": ["ESNext", "DOM"],
+    "strict": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "types": [
+      "cypress",
+      "cypress-real-events",
+      "mocha",
+      "node"
+    ]
+  },
+  "include": [
+    "e2e/**/*.ts"
+  ]
+}
