@@ -13,25 +13,7 @@
 
 Java open source e-commerce software
 
-Headless commerce and Rest api for ecommerce
-
-- Catalog
-- Shopping cart
-- Checkout
-- Merchant
-- Order
-- Customer
-- User
-
-Shopizer Headless commerce consists of the following components:
-
-
-Access the headless api: http://localhost:8080/swagger-ui.html
-
-
-See the demo: [**New demo on the way 2025]
--------------------
-Headless demo Available soon
+Futtatás:
 
 1.  Run from Docker images:
 
@@ -63,9 +45,20 @@ docker run \
  -p 80:80 shopizerecomm/shopizer-shop-reactjs
 ```
 
-API documentation:
+Tesztek futtatása
 -------------------
-
+1. Cypress 
+```
+npx cypress open
+```
+2. Playwright
+```
+npx playwright test --ui
+```
+3. Selenium
+```
+npm test
+```
 
 Get the source code:
 -------------------
@@ -106,43 +99,5 @@ The instructions above will let you run the application with default settings an
 Please read the instructions on how to connect to MySQL, configure an email server and configure other subsystems
 
 
-### Documentation:
--------------------
-
-Documentation available [<https://shopizer-ecommerce.github.io/documentation/>](http://localhost:8080/swagger-ui/index.html)
-
-ChatOps <https://shopizer.slack.com>  - Join our Slack channel <https://communityinviter.com/apps/shopizer/shopizer>
-
-More information is available on shopizer web site here <http://www.shopizer.com>
-
-### Participation:
--------------------
-
-If you have interest in giving feedback or for participating to Shopizer project in any way
-Feel to use the contact form <http://www.shopizer.com/contact.html> and share your email address
-so we can send an invite to our Slack channel
-
-### How to Contribute:
--------------------
-Fork the repository to your GitHub account
-
-Clone from fork repository
--------------------
-
-       $ git clone https://github.com/yourusername/shopizer.git
-
-Build application according to steps provided above
-
-
-Create new branch in your repository
--------------------
-
-	   $ git checkout -b branch-name
-
-
-Push your changes to Shopizer
--------------------
-
-Please open a PR (pull request) in order to have your changes merged to the upstream
 
 
