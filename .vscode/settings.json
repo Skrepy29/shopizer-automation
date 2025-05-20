@@ -1,0 +1,8 @@
+{
+  "mochaExplorer.files": "tests/**/*.spec.js",
+  "mochaExplorer.ui": "bdd",
+  "mochaExplorer.timeout": 60000,
+  "mochaExplorer.cwd": "${workspaceFolder}",
+  "mochaExplorer.require": [],
+  "git.ignoreLimitWarning": true
+}

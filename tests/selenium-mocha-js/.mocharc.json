@@ -1,0 +1,6 @@
+{
+  "recursive": true,
+  "spec": "tests/**/*.spec.js",
+  "timeout": 60000,
+  "ui": "bdd"
+}
