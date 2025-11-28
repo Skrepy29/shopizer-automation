@@ -1,0 +1,4 @@
+testName,testUser,password,email,address,table,chair,quantity,scenario
+GoodTestUser,GoodtestUser,testPassword!123,goodtest@testEmail.com,goodTestAdress 123,Olive Table,Chair Beige,1,success
+WrongPassword,noPasswordUser,0 ,badtest@testEmail.com,badTestAdress 123,Olive Table,Chair Beige,3,fail
+NotRegisteredUser,noAddressUser,testPassword!34545,badtest2@testEmail.com,no adress ,Olive Table,Chair Beige,1,fail

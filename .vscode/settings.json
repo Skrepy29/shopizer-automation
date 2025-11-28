@@ -4,5 +4,6 @@
   "mochaExplorer.timeout": 60000,
   "mochaExplorer.cwd": "${workspaceFolder}",
   "mochaExplorer.require": [],
-  "git.ignoreLimitWarning": true
+  "git.ignoreLimitWarning": true,
+  "java.compile.nullAnalysis.mode": "disabled"
 }

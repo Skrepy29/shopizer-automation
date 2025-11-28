@@ -10,10 +10,12 @@
       "cypress",
       "cypress-real-events",
       "mocha",
+      "chai",
       "node"
     ]
   },
   "include": [
-    "e2e/**/*.ts"
+    "e2e/**/*.ts",
+    "support/**/*.ts"
   ]
 }

@@ -1,0 +1,6 @@
+testName,table,quantity,scenario
+add 1 Olive Table,Olive Table,1,success
+add 3 Olive Table,Olive Table,3,success
+zero qty invalid,Olive Table,0,invalid
+negative qty invalid,Olive Table,-2,invalid
+non-existing table,Table That Does Not Exist,1,notfound 
