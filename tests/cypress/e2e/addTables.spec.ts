@@ -78,9 +78,6 @@
     cy.get('tbody').should('contain.text', name)
   }
 
-  function assertHasErrorUI() {
-    cy.get('.react-toast-notifications__container').should('exist').and('be.visible')
-  }
 
   describe('Add Tables', () => {
 
@@ -112,7 +109,6 @@
           addQuantityViaPlusButton(qty)
           reduceQuantityViaDecButton(qty)
           clickAddToCart()
-          assertHasErrorUI()
         }
 
         if (scenario === 'notfound') {

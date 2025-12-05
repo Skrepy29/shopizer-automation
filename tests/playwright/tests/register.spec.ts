@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, Page } from '@playwright/test';
 import { parseCsvToRows } from '../utils/csv';
 import path from 'path';
 
@@ -9,13 +9,13 @@ const successRows = registerRows.filter(r => (r.scenario || 'success').toLowerCa
 const failRows = registerRows.filter(r => (r.scenario || '').toLowerCase() === 'fail');
 
 
-async function openRegisterPage(page) {
+async function openRegisterPage(page: Page) {
   await page.goto('/', { waitUntil: 'load' });
   await page.locator('div').filter({ hasText: /^LoginRegister$/ }).first().click();
   await page.getByRole('banner').getByRole('link', { name: 'Register' }).click();
 }
 
-async function fillRegisterForm(page, row: any) {
+async function fillRegisterForm(page: Page, row: any) {
   const testUser = row.testUser || '';
   await page.locator('.login-register-form input[type="email"]').fill(row.email || '');
   await page.locator('.login-register-form input[name="password"]').fill(row.password || '');
@@ -26,19 +26,19 @@ async function fillRegisterForm(page, row: any) {
   await page.locator(':nth-child(9) > select').selectOption({ index: 1 });
 }
 
-async function submitRegister(page) {
+async function submitRegister(page: Page) {
   await page.locator('button', { hasText: 'Register' }).first().click();
 }
 
-async function assertRegisterSuccess(page) {
-  const errors = page.locator('.react-toast-notifications__container');
-  await expect(errors).toHaveText('You have successfully registered in to this website');
+async function assertRegisterSuccess(page: Page) {
+  const toast = page.locator('.react-toast-notifications__container');
+  await expect(toast).toHaveText('You have successfully registered in to this website');
   await expect(page).not.toHaveURL(/\/register/);
 }
 
-async function assertRegisterFail(page) {
-  const errors = page.locator('react-toast-notifications__container');
-  await expect(errors).toBeVisible();
+async function assertRegisterFail(page: Page) {
+  const toast = page.locator('react-toast-notifications__container');
+  await expect(toast).toBeVisible();
 }
 
 test.describe('Register', () => {

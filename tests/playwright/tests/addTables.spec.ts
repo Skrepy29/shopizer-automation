@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, Page } from '@playwright/test';
 import { parseCsvToRows } from '../utils/csv';
 import path from 'path';
 
@@ -10,7 +10,7 @@ const tableRows = parseCsvToRows(tablesCsvPath);
 const successUser = registerRows.find(u => (u.scenario || 'success').toLowerCase() === 'success');
 
 
-async function openLoginPageAndLogin(page, email: string, password: string) {
+async function openLoginPageAndLogin(page: Page, email: string, password: string) {
   await page.goto('/', { waitUntil: 'load' });
   await page.locator('div').filter({ hasText: /^LoginRegister$/ }).first().click();
   await page.getByRole('banner').getByRole('link', { name: 'Login' }).click();
@@ -21,24 +21,24 @@ async function openLoginPageAndLogin(page, email: string, password: string) {
   await expect(page.locator('.account-dropdown:has-text("My Account"), .account-dropdown:has-text("Welcome")')).toBeVisible();
 }
 
-async function goToProductByName(page, name: string) {
+async function goToProductByName(page: Page, name: string) {
   await page.getByRole('link', { name: 'Tables' }).first().click();
   await page.locator('.product-content').getByText(name).click();
 }
 
-async function addQuantityViaPlusButton(page, qty: number) {
+async function addQuantityViaPlusButton(page: Page, qty: number) {
   const n = Number(qty) || 1;
   for (let i = 1; i < n; i++) {
     await page.getByRole('button', { name: '+' }).click();
   }
 }
 
-async function clickAddToCart(page) {
+async function clickAddToCart(page: Page) {
   const addBtn = page.locator('button:has-text("Add to cart"), a:has-text("Add to cart")').first();
   await addBtn.click({ force: true });
 }
 
-async function assertMiniCartHas(page, name: string, qty: number) {
+async function assertMiniCartHas(page: Page, name: string, qty: number) {
   await page.locator('.header-right-wrap button').nth(1).click();
   const cartItem = page.locator('.single-shopping-cart');
   await expect(cartItem).toContainText(name);
@@ -46,12 +46,12 @@ async function assertMiniCartHas(page, name: string, qty: number) {
 }
 
 
-async function assertCartPageHas(page, name: string) {
+async function assertCartPageHas(page: Page, name: string) {
   await page.locator('.header-right-wrap').locator('button').nth(1).click();
   await expect(page.locator('.single-shopping-cart')).toContainText(name);
 }
 
-async function assertHasErrorUI(page) {
+async function assertHasErrorUI(page: Page) {
   await expect.soft(page.locator('.react-toast-notifications__container')).toBeVisible();
 }
 

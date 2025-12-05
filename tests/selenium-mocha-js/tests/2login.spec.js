@@ -45,10 +45,8 @@ describe('Login', function() {
   async function doLogin(row) {
     await driver.get(`${BASE_URL}/login`);
     const usernameInput = await driver.findElement(By.name('username'));
-    await usernameInput.clear();
     await usernameInput.sendKeys(row.email || '');
     const passInput = await driver.findElement(By.name('loginPassword'));
-    await passInput.clear();
     await passInput.sendKeys(row.password || '');
     const submitButton = await driver.findElement(By.css('.button-box button[type="submit"]'));
     await submitButton.click();

@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, Page } from '@playwright/test';
 import { parseCsvToRows } from '../utils/csv';
 import path from 'path';
 
@@ -7,7 +7,7 @@ const valuesCsvPath = path.resolve(__dirname, '../utils/values.csv');
 const registerRows = parseCsvToRows(valuesCsvPath);
 const successRows = registerRows.filter(r => (r.scenario || 'success').toLowerCase() === 'success');
 
-async function loginViaUI(page, email: string, password: string) {
+async function loginViaUI(page: Page, email: string, password: string) {
   await page.goto('/', { waitUntil: 'load' });
   await page.locator('div').filter({ hasText: /^LoginRegister$/ }).first().click();
   await page.getByRole('banner').getByRole('link', { name: 'Login' }).click();

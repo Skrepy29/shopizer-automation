@@ -7,7 +7,6 @@ type Row = {
   testUser: string
   password: string
   email: string
-  address: string
   table?: string
   chair?: string
   quantity?: string | number
@@ -27,14 +26,12 @@ function openRegisterPage() {
   cy.get('.login-register-form').should('exist')
 }
 
-function fillRegisterForm({ email, password, testUser, address }: Row) {
+function fillRegisterForm({ email, password, testUser }: Row) {
   cy.get('.login-register-form input[type="email"]').clear().type(email)
   cy.get('.login-register-form input[name="password"]').clear().type(password ?? '')
   cy.get('.login-register-form input[name="repeatPassword"]').clear().type(password ?? '')
-
   cy.get('.login-register-form input[name="firstName"]').clear().type(`${testUser ?? ''}FirstName`)
   cy.get('.login-register-form input[name="lastName"]').clear().type(`${testUser ?? ''}LastName`)
-
   cy.get(':nth-child(8) > select').select(1)  
   cy.get(':nth-child(9) > select').select(1)  
 }
@@ -54,7 +51,6 @@ function assertRegisterFail() {
   cy.get('.toast-error, .alert-danger, .validation-error, .error-msg')
     .should('exist')
     .and('be.visible')
-
   cy.get('.login-register-form').should('exist')
 }
 

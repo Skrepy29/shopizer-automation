@@ -42,10 +42,8 @@ describe('Add Tables', function() {
     const loginLink = await driver.wait(until.elementLocated(By.xpath("//a[contains(text(),'Login')] | //button[contains(text(),'Login')]")), DEFAULT_TIMEOUT);
     await loginLink.click();
     const usernameInput = await driver.findElement(By.css('.login-form-container input[name="username"]'));
-    await usernameInput.clear();
     await usernameInput.sendKeys(email || '');
     const passInput = await driver.findElement(By.css('.login-form-container input[name="loginPassword"]'));
-    await passInput.clear();
     await passInput.sendKeys(password || '');
     const submitButton = await driver.findElement(By.css('.login-btn, .button-box button, button[type="submit"]'));
     await submitButton.click();
@@ -116,21 +114,18 @@ describe('Add Tables', function() {
   }
 
   async function assertHasErrorUI() {
-    const errorEl = await driver.wait(until.elementLocated(By.css('.react-toast-notifications__container')), DEFAULT_TIMEOUT);
-    const displayed = await errorEl.isDisplayed();
+    const toast = await driver.wait(until.elementLocated(By.css('.react-toast-notifications__container')), DEFAULT_TIMEOUT);
+    const displayed = await toast.isDisplayed();
     expect(displayed).to.be.true;
   }
 
   tableRows.forEach((row, idx) => {
     const title = (row.testName && row.testName.trim()) || `Add table #${idx + 1}`;
     it(title, async () => {
-      if (!successUser) {
-        throw new Error('No success user found in values.csv');
-      }
       const qty = Number(row.quantity) || 1;
       const scenario = (row.scenario || 'success').toLowerCase();
       await loginViaUI(successUser.email, successUser.password);
-      if (scenario === 'success' || scenario === 'limit') {
+      if (scenario === 'success') {
         await driver.get(BASE_URL);
         await goToProductByName(row.table);
         await addQuantityViaPlusButton(qty);

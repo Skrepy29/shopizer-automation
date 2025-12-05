@@ -41,10 +41,8 @@ describe('Add Chairs', function() {
     const loginLink = await driver.wait(until.elementLocated(By.xpath("//a[contains(text(),'Login')] | //button[contains(text(),'Login')]")), DEFAULT_TIMEOUT);
     await loginLink.click();
     const usernameInput = await driver.findElement(By.css('.login-form-container input[name="username"]'));
-    await usernameInput.clear();
     await usernameInput.sendKeys(email || '');
     const passInput = await driver.findElement(By.css('.login-form-container input[name="loginPassword"]'));
-    await passInput.clear();
     await passInput.sendKeys(password || '');
     const submitButton = await driver.findElement(By.css('.login-btn, .button-box button, button[type="submit"]'));
     await submitButton.click();

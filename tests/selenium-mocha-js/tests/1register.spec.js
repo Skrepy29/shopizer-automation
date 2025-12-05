@@ -51,25 +51,22 @@ describe('Register', function() {
 
   async function fillRegisterForm(row) {
     const emailInput = await driver.findElement(By.css('.login-register-form input[type="email"]'));
-    await emailInput.clear();
     await emailInput.sendKeys(row.email);
     const passwordInput = await driver.findElement(By.name('password'));
-    await passwordInput.clear();
     await passwordInput.sendKeys(row.password);
     const repeatInput = await driver.findElement(By.name('repeatPassword'));
-    await repeatInput.clear();
     await repeatInput.sendKeys(row.password);
     const firstNameInput = await driver.findElement(By.name('firstName'));
-    await firstNameInput.clear();
     await firstNameInput.sendKeys(`${row.testUser} FirstName`);
     const lastNameInput = await driver.findElement(By.name('lastName'));
-    await lastNameInput.clear();
     await lastNameInput.sendKeys(`${row.testUser} LastName`);
-    const countrySelect = await driver.wait(until.elementLocated(By.css('.login-input select')), DEFAULT_TIMEOUT);
+    const countrySelect = await driver.wait(until.elementLocated(By.css('.login-input select')),
+     DEFAULT_TIMEOUT);
     await countrySelect.click();
     const canadaOption = await countrySelect.findElement(By.xpath(".//option[normalize-space(text())='Canada']"));
     await canadaOption.click();  
-    const stateSelect = await driver.wait(until.elementLocated(By.css('.login-input:nth-child(9) > select')), DEFAULT_TIMEOUT);
+    const stateSelect = await driver.wait(until.elementLocated(By.css('.login-input:nth-child(9) > select')),
+     DEFAULT_TIMEOUT);
     await stateSelect.click();
     const quebecOption = await stateSelect.findElement(By.xpath(".//option[normalize-space(text())='Quebec']"));
     await quebecOption.click();    
@@ -87,24 +84,10 @@ describe('Register', function() {
   }
 
   async function assertRegisterSuccess() {
-//    await driver.wait(async () => {
-//      const url = await driver.getCurrentUrl();
-//      return !url.includes('/register');
-//    }, DEFAULT_TIMEOUT);
     await driver.wait(until.urlContains('/my-account'), DEFAULT_TIMEOUT);
-//    const toastContainer = await driver.findElement(By.xpath('.//body/div[2]/div/div/div[2]'));
-//    const text = await toastContainer.getText();
-//    expect(text).to.not.include('Registering customer already exist');
-//    expect(text).to.include('You have successfully registered in to this website');
-  } 
+  }
 
   async function assertRegisterFail() {
-//    const form = await driver.findElement(By.css('.login-register-form'));
-//    expect(form).toBeVisible();
-//    expect(await form.isDisplayed()).to.be.true;
- //   const toastContainer = await driver.findElement(By.xpath('.//body/div[2]/div/div/div[2]'));
- //   const text = await toastContainer.getText();
- //   expect(text).to.include('Registering customer already exist');
     await driver.wait(until.urlContains('/register'), DEFAULT_TIMEOUT);
   }
 
